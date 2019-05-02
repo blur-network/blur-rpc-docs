@@ -85,7 +85,7 @@
 
 <p>The majority of Blurd RPC calls use the daemon's <code class="language-">json_rpc</code> interface to request various bits of information. These methods all follow a similar structure, for example:</p>
 
-<pre><code class="language-javascript">IP=127.0.0.1
+<pre><code class="language-json">IP=127.0.0.1
 PORT=52542
 METHOD='get_block_header_by_height'
 ALIAS='getblockheaderbyheight'
@@ -115,7 +115,7 @@ curl \
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_count"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_count"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -147,7 +147,7 @@ curl \
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$  curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"on_get_block_hash","params":[420000]}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$  curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"on_get_block_hash","params":[420000]}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -184,7 +184,7 @@ curl \
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_template","params":{"wallet_address":"bL2yv6tv5hGcS1L5WvPgu7VkVg525icyRRd2sCKNY5ZQACRHnoXNG6EJqTpatQZ9HAaDegZUYCKUPhkwGSfeWSxA2DBUtKpQh","reserve_size":60}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_template","params":{"wallet_address":"bL2yv6tv5hGcS1L5WvPgu7VkVg525icyRRd2sCKNY5ZQACRHnoXNG6EJqTpatQZ9HAaDegZUYCKUPhkwGSfeWSxA2DBUtKpQh","reserve_size":60}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -223,7 +223,7 @@ curl \
 
 <p>In this example, a block blob which has not been mined is submitted:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_block","params":["0707e6bdfedc053771512f1bc27c62731ae9e8f2443db64ce742f4e57f5cf8d393de28551e441a0000000002fb830a01ffbf830a018cfe88bee283060274c0aae2ef5730e680308d9c00b6da59187ad0352efe3c71d36eeeb28782f29f2501bd56b952c3ddc3e350c2631d3a5086cac172c56893831228b17de296ff4669de020200000000"]' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_block","params":["0707e6bdfedc053771512f1bc27c62731ae9e8f2443db64ce742f4e57f5cf8d393de28551e441a0000000002fb830a01ffbf830a018cfe88bee283060274c0aae2ef5730e680308d9c00b6da59187ad0352efe3c71d36eeeb28782f29f2501bd56b952c3ddc3e350c2631d3a5086cac172c56893831228b17de296ff4669de020200000000"]' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -270,7 +270,7 @@ curl \
 
 <p>In this example, the most recent block (429811 at the time) is returned:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_last_block_header"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_last_block_header"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -320,7 +320,7 @@ curl \
 
 <p>In this example, block 429811 is looked up by its hash:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_hash","params":{"hash":"e293bebabcda8fa5f9bba5da574b598ba617abbd51a6c6f6b07f7089b846248f"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_hash","params":{"hash":"e293bebabcda8fa5f9bba5da574b598ba617abbd51a6c6f6b07f7089b846248f"}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -370,7 +370,7 @@ curl \
 
 <p>In this example, block 912345 is looked up by its height (notice that the returned information is the same as in the previous example):</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_height","params":{"height":429811}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_height","params":{"height":429811}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -421,7 +421,7 @@ curl \
 
 <p>In this example, blocks range from height 429811 to 429814 is looked up (notice that the returned informations are ascending order and that it is at the April 2018 network upgrade time):</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_headers_range","params":{"start_height":429811,"end_height":429814}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_headers_range","params":{"start_height":429811,"end_height":429814}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -562,7 +562,7 @@ curl \
 
 <p>In the following example, block 429811 is looked up by its height. Note that block 912345 does not have any non-coinbase transactions. (See the next example for a block with extra transactions):</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"height":429811}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"height":429811}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -597,7 +597,7 @@ curl \
 
 <p>In the following example, block 429811 is looked up by its hash. Note that block 429811 has 1 non-coinbase transaction:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"hash":"e293bebabcda8fa5f9bba5da574b598ba617abbd51a6c6f6b07f7089b846248f"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"hash":"e293bebabcda8fa5f9bba5da574b598ba617abbd51a6c6f6b07f7089b846248f"}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -668,7 +668,7 @@ curl \
 
 <p>Following is an example of<code class="language-">get_connections</code></pre> and it's return:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_connections"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_connections"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -800,7 +800,7 @@ curl \
 
 <p>Following is an example<code class="language-">get_info</code></pre> call and its return:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -862,7 +862,7 @@ curl \
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"hard_fork_info"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"hard_fork_info"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -913,7 +913,7 @@ curl \
 
 <p>In the following example, host is banned with its IP address string-formatted as A.B.C.D:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"host":"192.168.1.51","ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"host":"192.168.1.51","ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
 
 {
   "id": "0",
@@ -928,7 +928,7 @@ curl \
 
 <p>In the following example, integer-formatted IP is banned:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"ip":838969536,"ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"ip":838969536,"ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
 
 {
   "id": "0",
@@ -962,7 +962,7 @@ curl \
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_bans"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_bans"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1002,7 +1002,7 @@ curl \
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_txpool","params":{"txids":["dc16fa8eaffe1484ca9014ea050e13131d3acf23b419f33bb4cc0b32b6c49308",""]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_txpool","params":{"txids":["dc16fa8eaffe1484ca9014ea050e13131d3acf23b419f33bb4cc0b32b6c49308",""]}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1045,7 +1045,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_histogram","params":{"amounts":[5610054394505]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_histogram","params":{"amounts":[5610054394505]}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1088,7 +1088,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_coinbase_tx_sum","params":{"height":421000,"count":3}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_coinbase_tx_sum","params":{"height":421000,"count":3}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1119,7 +1119,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_version"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_version"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1154,7 +1154,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_fee_estimate"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_fee_estimate"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1191,7 +1191,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_alternate_chains"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_alternate_chains"}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1221,7 +1221,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"txids":[9fd75c429cbe52da9a52f2ffc5fbd107fe7fd2099c0d8de274dc8a67e0c98613]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"txids":[9fd75c429cbe52da9a52f2ffc5fbd107fe7fd2099c0d8de274dc8a67e0c98613]}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1266,7 +1266,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sync_info"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sync_info"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1380,7 +1380,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_txpool_backlog"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_txpool_backlog"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1422,7 +1422,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_distribution","params":{"amounts":[628780000],"from_height":1462078}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_distribution","params":{"amounts":[628780000],"from_height":1462078}}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1447,7 +1447,7 @@ RingCT outputs counts as 0 amount.</p>
 
 <p>The data structure for these calls is different than the JSON RPC calls. Whereas the JSON RPC methods were called using the<code class="language-">/json_rpc</code></pre> extension and specifying a method, these methods are called at their own extensions. For example:</p>
 
-<pre><code class="language-javascript">IP=127.0.0.1
+<pre><code class="language-json">IP=127.0.0.1
 PORT=52542
 METHOD='gettransactions'
 PARAMS='{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"]}'
@@ -1477,7 +1477,7 @@ curl \
   <li><em>untrusted</em> - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (<code class="language-">true</code>), or when the daemon is fully synced (<code class="language-">false</code>).</li>
 </ul>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_height -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_height -H 'Content-Type: application/json'
 
 {
   "height": 429811,
@@ -1728,7 +1728,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example 1: Return transaction information in binary format.</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_transactions -d '{"txs_hashes":["4f34ac178f15b392d9a08afa25b2f9ba03ce71b3badc878fc4e562be166b1218"]}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_transactions -d '{"txs_hashes":["4f34ac178f15b392d9a08afa25b2f9ba03ce71b3badc878fc4e562be166b1218"]}' -H 'Content-Type: application/json'
 
 {
   "status": "OK",
@@ -1753,7 +1753,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example 2: Decode returned transaction information in JSON format. Note: the "vin", "vout" and "signatures" list have been truncated in the displayed return for space considerations.</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_transactions -d '{"txs_hashes":["4f34ac178f15b392d9a08afa25b2f9ba03ce71b3badc878fc4e562be166b1218"],"decode_as_json":true}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_transactions -d '{"txs_hashes":["4f34ac178f15b392d9a08afa25b2f9ba03ce71b3badc878fc4e562be166b1218"],"decode_as_json":true}' -H 'Content-Type: application/json'
 
 {
   "status": "OK",
@@ -1778,7 +1778,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example 3: Returned a missed (unexisting) transaction.</p>
 
-<pre><code class="language-javascript">curl -X POST http://127.0.0.1:52542/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"]}' -H 'Content-Type: application/json'
+<pre><code class="language-json">curl -X POST http://127.0.0.1:52542/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"]}' -H 'Content-Type: application/json'
 
 {
   "missed_tx": ["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"],
@@ -1805,7 +1805,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_alt_blocks_hashes -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_alt_blocks_hashes -H 'Content-Type: application/json'
 
 {
   "status": "OK",
@@ -1835,7 +1835,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/is_key_image_spent -d '{"key_images":["8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3","7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4"]}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/is_key_image_spent -d '{"key_images":["8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3","7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4"]}' -H 'Content-Type: application/json'
 
 {
   "spent_status": [1,2],
@@ -1876,7 +1876,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example (No return information included here):</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/send_raw_transaction -d '{"tx_as_hex":"de6a3...", "do_not_relay":false}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/send_raw_transaction -d '{"tx_as_hex":"de6a3...", "do_not_relay":false}' -H 'Content-Type: application/json'
 </code></pre>
 
 <h3 id="start_mining"><strong>/start_mining</strong></h3>
@@ -1900,7 +1900,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/start_mining -d '{"miner_address":"bL2yv6tv5hGcS1L5WvPgu7VkVg525icyRRd2sCKNY5ZQACRHnoXNG6EJqTpatQZ9HAaDegZUYCKUPhkwGSfeWSxA2DBUtKpQh","threads_count":4}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/start_mining -d '{"miner_address":"bL2yv6tv5hGcS1L5WvPgu7VkVg525icyRRd2sCKNY5ZQACRHnoXNG6EJqTpatQZ9HAaDegZUYCKUPhkwGSfeWSxA2DBUtKpQh","threads_count":4}' -H 'Content-Type: application/json'
 
 {
   "status": "OK"
@@ -1923,7 +1923,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/stop_mining -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/stop_mining -H 'Content-Type: application/json'
 
 {
   "status": "OK"
@@ -1950,7 +1950,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example while mining:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/mining_status -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/mining_status -H 'Content-Type: application/json'
 
 {
   "active": true,
@@ -1963,7 +1963,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example while not mining:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/mining_status -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/mining_status -H 'Content-Type: application/json'
 
 {
   "active": false,
@@ -1990,7 +1990,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/save_bc -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/save_bc -H 'Content-Type: application/json'
 
 {
   "status": "OK"
@@ -2023,7 +2023,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example (truncated lists):</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_peer_list -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_peer_list -H 'Content-Type: application/json'
 
 {
   "gray_list": [{
@@ -2078,7 +2078,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Example while mining:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
 
 {
   "status": "OK"
@@ -2087,7 +2087,7 @@ $ curl -X POST http://127.0.0.1:52542/get_o_indexes.bin --data-binary '{"txid":"
 
 <p>Error while not mining:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
 
 {
   "status": "NOT MINING"
@@ -2115,7 +2115,7 @@ By default, log level is set to <code class="language-">0</code>.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/set_log_level -d '{"level":1}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/set_log_level -d '{"level":1}' -H 'Content-Type: application/json'
 
 {
   "status": "OK"
@@ -2204,7 +2204,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example to set all facilities to Security Level<code class="language-">Info</code></pre>:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/set_log_categories -d '{"categories": "*:INFO"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/set_log_categories -d '{"categories": "*:INFO"}' -H 'Content-Type: application/json'
 
 {
   "categories": "*:INFO",
@@ -2214,7 +2214,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example without input to set the default categories:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/set_log_categories -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/set_log_categories -H 'Content-Type: application/json'
 
 {
   "categories": "*:WARNING,net:FATAL,net.p2p:FATAL,net.cn:FATAL,global:INFO,verify:FATAL,stacktrace:INFO,logging:INFO,msgwriter:INFO",
@@ -2319,7 +2319,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example (Note: Some lists in the returned information have been truncated for display reasons):</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_transaction_pool -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_transaction_pool -H 'Content-Type: application/json'
 
 {
   "spent_key_images": [{
@@ -2371,7 +2371,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_transaction_pool_hashes.bin -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_transaction_pool_hashes.bin -H 'Content-Type: application/json'
 
 {
   "status": "OK",
@@ -2412,7 +2412,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_transaction_pool_stats -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_transaction_pool_stats -H 'Content-Type: application/json'
 
 {
   "pool_stats": {
@@ -2450,7 +2450,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/stop_daemon -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/stop_daemon -H 'Content-Type: application/json'
 
 {
   "status": "OK"
@@ -2487,7 +2487,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/get_limit -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/get_limit -H 'Content-Type: application/json'
 
 {
   "limit_down": 8192,
@@ -2521,7 +2521,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/set_limit -d '{"limit_down": 1024}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/set_limit -d '{"limit_down": 1024}' -H 'Content-Type: application/json'
 
 {
   "limit_down": 1024,
@@ -2550,7 +2550,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/out_peers -d '{"out_peers": 3232235535}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/out_peers -d '{"out_peers": 3232235535}' -H 'Content-Type: application/json'
 
 {
   "status": "OK"
@@ -2577,7 +2577,7 @@ Setting the categories to "" prevent any logs to be printed.</li>
 
 <p>Example:</p>
 
-<pre><code class="language-javascript">$ curl -X POST http://127.0.0.1:52542/out_peers -d '{"in_peers": 3232235535}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52542/out_peers -d '{"in_peers": 3232235535}' -H 'Content-Type: application/json'
 
 {
   "status": "OK"
