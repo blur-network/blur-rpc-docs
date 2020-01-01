@@ -22,8 +22,7 @@
     PARAMS="{\"payment_id\":\"1234567890123456789012345678900012345678901234567890123456789000\"}"
     curl \
         -X POST http://$IP:$PORT/json_rpc \
-        -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'"$PARAMS"'}' \
-        -H 'Content-Type: application/json'
+        -d '{"method":"'$METHOD'","params":'"$PARAMS"'}'
     </code></pre>
 
   <p>If the blur-wallet-rpc was executed with the <code class="language-json">--rpc-login</code> argument as <code class="language-json">username:password</code>, then follow this example:</p>
@@ -35,8 +34,7 @@
     curl \
         -u username:password --digest \
         -X POST http://$IP:$PORT/json_rpc \
-        -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'"$PARAMS"'}' \
-        -H 'Content-Type: application/json'
+        -d '{"method":"'$METHOD'","params":'"$PARAMS"'}'        
     </code></pre>
 
   <p>Note: "atomic units" refer to the smallest fraction of 1 BLUR according to the blurd implementation. <strong>1 BLUR = 1e12 atomic units.</strong></p>
@@ -153,7 +151,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_balance","params":{"account_index":0,"address_indices":[0,1]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_balance","params":{"account_index":0,"address_indices":[0,1]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -204,7 +202,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_address","params":{"account_index":0,"address_index":[0,1,4]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_address","params":{"account_index":0,"address_index":[0,1,4]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -256,7 +254,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_address","params":{"account_index":0,"label":"new-sub"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"create_address","params":{"account_index":0,"label":"new-sub"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -289,7 +287,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"label_address","params":{"index":{"major":0,"minor":1},"label":"label"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"label_address","params":{"index":{"major":0,"minor":1},"label":"label"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -329,7 +327,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_accounts","params":{"tag":"myTag"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"get_accounts","params":{"tag":"myTag"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -371,7 +369,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_account","params":{"label":"Secondary account"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"create_account","params":{"label":"Secondary account"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -399,7 +397,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"label_account","params":{"account_index":0,"label":"Primary account"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"label_account","params":{"account_index":0,"label":"Primary account"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -431,7 +429,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_account_tags","params":""}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"get_account_tags","params":""}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -462,7 +460,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"tag_accounts","params":{"tag":"myTag","accounts":[0,1]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"tag_accounts","params":{"tag":"myTag","accounts":[0,1]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -487,7 +485,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"untag_accounts","params":{"accounts":[1]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"untag_accounts","params":{"accounts":[1]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -513,7 +511,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_account_tag_description","params":{"tag":"myTag","description":"Test tag"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"set_account_tag_description","params":{"tag":"myTag","description":"Test tag"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -538,7 +536,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_height"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_height"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -591,7 +589,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":1000000,"address":"Ry42wbj88juDcrP4HxYRmPjCeoCdy4HyU8z39jmXL9LeUoRQoRGkSGcSqNkD5XZvMd1DSjppV75KxeDnBpZs3ZkW38uE23wqK"},{"amount":1000000,"address":"Ry4gNmnSaBcVBKQfoagN7mH2PsEHjs7ToCP7uKFzhGpoZocrPvuZdbGbGbScQ5m95w4DTUfwT3u3TDXTHtN29mwV3AdFdN7qC"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":5,"get_tx_key": true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"transfer","params":{"destinations":[{"amount":1000000,"address":"Ry42wbj88juDcrP4HxYRmPjCeoCdy4HyU8z39jmXL9LeUoRQoRGkSGcSqNkD5XZvMd1DSjppV75KxeDnBpZs3ZkW38uE23wqK"},{"amount":1000000,"address":"Ry4gNmnSaBcVBKQfoagN7mH2PsEHjs7ToCP7uKFzhGpoZocrPvuZdbGbGbScQ5m95w4DTUfwT3u3TDXTHtN29mwV3AdFdN7qC"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":5,"get_tx_key": true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -651,7 +649,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer_split","params":{"destinations":[{"amount":100000,"address":"Ry42wbj88juDcrP4HxYRmPjCeoCdy4HyU8z39jmXL9LeUoRQoRGkSGcSqNkD5XZvMd1DSjppV75KxeDnBpZs3ZkW38uE23wqK"},{"amount":100000,"address":"Ry4gNmnSaBcVBKQfoagN7mH2PsEHjs7ToCP7uKFzhGpoZocrPvuZdbGbGbScQ5m95w4DTUfwT3u3TDXTHtN29mwV3AdFdN7qC"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":5,"get_tx_keys": true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"transfer_split","params":{"destinations":[{"amount":100000,"address":"Ry42wbj88juDcrP4HxYRmPjCeoCdy4HyU8z39jmXL9LeUoRQoRGkSGcSqNkD5XZvMd1DSjppV75KxeDnBpZs3ZkW38uE23wqK"},{"amount":100000,"address":"Ry4gNmnSaBcVBKQfoagN7mH2PsEHjs7ToCP7uKFzhGpoZocrPvuZdbGbGbScQ5m95w4DTUfwT3u3TDXTHtN29mwV3AdFdN7qC"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":5,"get_tx_keys": true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -697,7 +695,7 @@
 <p>In the example below, we first generate an unsigned_txset on a read only wallet before signing it:</p>
 
 <p>Generate unsigned_txset using the above "transfer" method on read-only wallet:</p>
-<pre><code class="language-json">curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":1000000,"address":"Ry4gNmnSaBcVBKQfoagN7mH2PsEHjs7ToCP7uKFzhGpoZocrPvuZdbGbGbScQ5m95w4DTUfwT3u3TDXTHtN29mwV3AdFdN7qC"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":5,"do_not_relay":true,"get_tx_hex":true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"transfer","params":{"destinations":[{"amount":1000000,"address":"Ry4gNmnSaBcVBKQfoagN7mH2PsEHjs7ToCP7uKFzhGpoZocrPvuZdbGbGbScQ5m95w4DTUfwT3u3TDXTHtN29mwV3AdFdN7qC"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":5,"do_not_relay":true,"get_tx_hex":true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -714,7 +712,7 @@
 </code></pre>
 
 <p>Sign tx using the previously generated unsigned_txset</p>
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sign_transfer","params":{"unsigned_txset":...long_hex..."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"sign_transfer","params":{"unsigned_txset":...long_hex..."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -744,7 +742,7 @@
 </ul>
 
 <p>In the example below, we submit the transfer using the signed_txset generated above:</p>
-<pre><code class="language-json">curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_transfer","params":{"tx_data_hex":...long_hex..."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"submit_transfer","params":{"tx_data_hex":...long_hex..."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -784,7 +782,7 @@
 
 <p>Example (In this example, <code class="language-json">sweep_dust</code> returns nothing because there are no funds to sweep):</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_dust","params":{"get_tx_keys":true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"sweep_dust","params":{"get_tx_keys":true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -834,7 +832,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_all","params":{"address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","ring_size":7,"unlock_time":0,"get_tx_keys":true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"sweep_all","params":{"address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","ring_size":7,"unlock_time":0,"get_tx_keys":true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -907,7 +905,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","ring_size":7,"unlock_time":0,"key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_keys":true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","ring_size":7,"unlock_time":0,"key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_keys":true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -944,7 +942,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"hex":"...tx_metadata..."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"relay_tx","params":{"hex":"...tx_metadata..."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -966,7 +964,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"store"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"store"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1010,7 +1008,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_payments","params":{"payment_id":"60900e5603bf96e3"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_payments","params":{"payment_id":"60900e5603bf96e3"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1067,7 +1065,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_bulk_payments","params":{"payment_ids":["0000000000000000"],"min_block_height":"120000"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_bulk_payments","params":{"payment_ids":["0000000000000000"],"min_block_height":"120000"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1121,7 +1119,7 @@
 
 <p>Example, get all transfers:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"all","account_index":0,"subaddr_indices":[0],"verbose":true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"incoming_transfers","params":{"transfer_type":"all","account_index":0,"subaddr_indices":[0],"verbose":true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1152,7 +1150,7 @@
 
 <p>Example, get available transfers:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"available","account_index":0,"subaddr_indices":[3],"verbose":true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"incoming_transfers","params":{"transfer_type":"available","account_index":0,"subaddr_indices":[3],"verbose":true}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1180,7 +1178,7 @@
 <!---
 <p>Example, get unavailable transfers:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"unavailable","account_index":0,"subaddr_indices":[3],"verbose":true}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"incoming_transfers","params":{"transfer_type":"unavailable","account_index":0,"subaddr_indices":[3],"verbose":true}}' 
 {
 "id": "0",
 "jsonrpc": "2.0",
@@ -1218,7 +1216,7 @@
 
 <p>Example (Query view key):</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"query_key","params":{"key_type":"view_key"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"query_key","params":{"key_type":"view_key"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1230,7 +1228,7 @@
 
 <p>Example (Query mnemonic key):</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"query_key","params":{"key_type":"mnemonic"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"query_key","params":{"key_type":"mnemonic"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1262,7 +1260,7 @@
 
 <p>Example (Payment ID is empty, use a random ID):</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_integrated_address","params":{"standard_address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"make_integrated_address","params":{"standard_address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1295,7 +1293,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"split_integrated_address","params":{"integrated_address": "Ur2r4WPbX9iWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k6qiBybEZWmB22HYyuoxF"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"split_integrated_address","params":{"integrated_address": "Ur2r4WPbX9iWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k6qiBybEZWmB22HYyuoxF"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1319,7 +1317,7 @@
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"stop_wallet"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"stop_wallet"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1341,7 +1339,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rescan_blockchain"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"rescan_blockchain"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1367,7 +1365,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_tx_notes","params":{"txids":["3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f"],"notes":["This is an example"]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"set_tx_notes","params":{"txids":["3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f"],"notes":["This is an example"]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1396,7 +1394,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_tx_notes","params":{"txids":["3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f"]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_tx_notes","params":{"txids":["3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f"]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1423,7 +1421,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_attribute","params":{"key":"my_attribute","value":"my_value"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"set_attribute","params":{"key":"my_attribute","value":"my_value"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1452,7 +1450,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_attribute","params":{"key":"my_attribute"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_attribute","params":{"key":"my_attribute"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1482,7 +1480,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_tx_key","params":{"txid":"... tx hash ..."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_tx_key","params":{"txid":"... tx hash ..."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1516,7 +1514,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_tx_key","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","tx_key":"feba662cf8fb6d0d0da18fc9b70ab28e01cc76311278fdd7fe7ab16360762b06","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_tx_key","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","tx_key":"feba662cf8fb6d0d0da18fc9b70ab28e01cc76311278fdd7fe7ab16360762b06","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1550,7 +1548,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"this is my transaction"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"this is my transaction"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1586,7 +1584,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>In the example below, the transaction has been proven:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"this is my transaction","signature":"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"this is my transaction","signature":"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1601,7 +1599,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>In the example below, the wrong message is used, avoiding the transaction to be proved:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"wrong message","signature":"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"wrong message","signature":"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1635,7 +1633,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"this is my transaction"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"this is my transaction"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1667,7 +1665,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>In the example below, the spend has been proven:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"this is my transaction","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"this is my transaction","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1679,7 +1677,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>In the example below, the wrong message is used, avoiding the spend to be proved:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"wrong message","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"wrong message","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1712,7 +1710,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_reserve_proof","params":{"all":false,"account_index":0,"amount":100000000000}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_reserve_proof","params":{"all":false,"account_index":0,"amount":100000000000}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1744,7 +1742,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>In the example below, the reserve has been proven:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_reserve_proof","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","signature":"ReserveProofV11BZ23sBt9sZJeGccf84mzyAmNCP3KzYbE1111112VKmH111118NfCYJQjZ6c46gT2kXgcHCaSSZeL8sRdzqjqx7i1e7FQfQGu2o113UYFVdwzHQi3iENDPa76Kn1BvywbKz3bMkXdZkBEEhBSF4kjjGaiMJ1ucKb6wvMVC4A8sA4nZEdL2Mk3wBucJCYTZwKqA8i1M113kqakDkG25FrjiDqdQTCYz2wDBmfKxF3eQiV5FWzZ6HmAyxnqTWUiMWukP9A3Edy3ZXqjP1b23dhz7Mbj39bBxe3ZeDNu9HnTSqYvHNRyqCkeUMJpHyQweqjGUJ1DSfFYr33J1E7MkhMnEi1o7trqWjVix32XLetYfePG73yvHbS24837L7Q64i5n1LSpd9yMiQZ3Dyaysi5y6jPx7TpAvnSqBFtuCciKoNzaXoA3dqt9cuVFZTXzdXKqdt3cXcVJMNxY8RvKPVQHhUur94Lpo1nSpxf7BN5a5rHrbZFqoZszsZmiWikYPkLX72XUdw6NWjLrTBxSy7KuPYH86c6udPEXLo2xgN6XHMBMBJzt8FqqK7EcpNUBkuHm2AtpGkf9CABY3oSjDQoRF5n4vNLd3qUaxNsG4XJ12L9gJ7GrK273BxkfEA8fDdxPrb1gpespbgEnCTuZHqj1A"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_reserve_proof","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","signature":"ReserveProofV11BZ23sBt9sZJeGccf84mzyAmNCP3KzYbE1111112VKmH111118NfCYJQjZ6c46gT2kXgcHCaSSZeL8sRdzqjqx7i1e7FQfQGu2o113UYFVdwzHQi3iENDPa76Kn1BvywbKz3bMkXdZkBEEhBSF4kjjGaiMJ1ucKb6wvMVC4A8sA4nZEdL2Mk3wBucJCYTZwKqA8i1M113kqakDkG25FrjiDqdQTCYz2wDBmfKxF3eQiV5FWzZ6HmAyxnqTWUiMWukP9A3Edy3ZXqjP1b23dhz7Mbj39bBxe3ZeDNu9HnTSqYvHNRyqCkeUMJpHyQweqjGUJ1DSfFYr33J1E7MkhMnEi1o7trqWjVix32XLetYfePG73yvHbS24837L7Q64i5n1LSpd9yMiQZ3Dyaysi5y6jPx7TpAvnSqBFtuCciKoNzaXoA3dqt9cuVFZTXzdXKqdt3cXcVJMNxY8RvKPVQHhUur94Lpo1nSpxf7BN5a5rHrbZFqoZszsZmiWikYPkLX72XUdw6NWjLrTBxSy7KuPYH86c6udPEXLo2xgN6XHMBMBJzt8FqqK7EcpNUBkuHm2AtpGkf9CABY3oSjDQoRF5n4vNLd3qUaxNsG4XJ12L9gJ7GrK273BxkfEA8fDdxPrb1gpespbgEnCTuZHqj1A"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1758,7 +1756,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>In the example below, all wallet reserve has been proven:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_reserve_proof","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","message":"I have 10 at least","signature":"...signature..."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_reserve_proof","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","message":"I have 10 at least","signature":"...signature..."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1772,7 +1770,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>In the example below, the wrong message is used, avoiding the reserve to be proved:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"wrong message","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"wrong message","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1837,7 +1835,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfers","params":{"in":true,"account_index":0}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"get_transfers","params":{"in":true,"account_index":0}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1931,7 +1929,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfer_by_txid","params":{"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"get_transfer_by_txid","params":{"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1977,7 +1975,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sign","params":{"data":"This is sample data to be signed"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"sign","params":{"data":"This is sample data to be signed"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2009,7 +2007,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"verify","params":{"data":"This is sample data to be signed","address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","signature":"SigV1Dp8Saxwuamk6A5UxniooX2ViAJSSA4EzBL7qvPvC4vQHAzThEhVUXcFY3SjwgJkBWuC8ZkrzXy6Aq7v6gzwdFYfS"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"verify","params":{"data":"This is sample data to be signed","address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","signature":"SigV1Dp8Saxwuamk6A5UxniooX2ViAJSSA4EzBL7qvPvC4vQHAzThEhVUXcFY3SjwgJkBWuC8ZkrzXy6Aq7v6gzwdFYfS"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2041,7 +2039,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"export_key_images"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"export_key_images"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2092,7 +2090,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"import_key_images", "params":{"signed_key_images":[{"key_image": "ef9e6ccf63881045a66be1572845aacba60a3a2a798dcef10904a8eb6b30abb4","signature": "30f525c6bbbb24ee9dc410c4c37e3ba3a77621ac10a8e479a71990fe1c4ecc0b32b11a8a271d40888bd0073cfc3cb407b922d7cf039d52cdeafca758a368ce0f"},{"key_image": "38b6f5d3e5d52cb8231c0c0b287bb42e894cbdf3156cdf9801dac22ebf2e498e","signature": "430bfc3418aedb902336700e0a68a9505f997c2411af39c19b93453674202806ea9cc28e40b6f4f844f91b1e724a09044de22c0894020d7a7c43ca86a564e80b"}]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"import_key_images", "params":{"signed_key_images":[{"key_image": "ef9e6ccf63881045a66be1572845aacba60a3a2a798dcef10904a8eb6b30abb4","signature": "30f525c6bbbb24ee9dc410c4c37e3ba3a77621ac10a8e479a71990fe1c4ecc0b32b11a8a271d40888bd0073cfc3cb407b922d7cf039d52cdeafca758a368ce0f"},{"key_image": "38b6f5d3e5d52cb8231c0c0b287bb42e894cbdf3156cdf9801dac22ebf2e498e","signature": "430bfc3418aedb902336700e0a68a9505f997c2411af39c19b93453674202806ea9cc28e40b6f4f844f91b1e724a09044de22c0894020d7a7c43ca86a564e80b"}]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2128,7 +2126,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_uri","params":{"address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","amount":10,"payment_id":"420fa29b2d9a49f5","tx_description":"Testing out the make_uri method function.","recipient_name":"el00ruobuob mainnet wallet"}}'  -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"make_uri","params":{"address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","amount":10,"payment_id":"420fa29b2d9a49f5","tx_description":"Testing out the make_uri method function.","recipient_name":"el00ruobuob mainnet wallet"}}'  
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2166,7 +2164,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"parse_uri","params":{"uri":"blur:bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH?tx_payment_id=420fa29b2d9a49f5&tx_amount=0.000000000010&recipient_name=el00ruobuob%20mainnet%20wallet&tx_description=Testing%20out%20the%20make_uri%20method%20function."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://127.0.0.1:52544/json_rpc -d '{"method":"parse_uri","params":{"uri":"blur:bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH?tx_payment_id=420fa29b2d9a49f5&tx_amount=0.000000000010&recipient_name=el00ruobuob%20mainnet%20wallet&tx_description=Testing%20out%20the%20make_uri%20method%20function."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2209,7 +2207,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_address_book","params":{"entries":[0,0]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"get_address_book","params":{"entries":[0,0]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2254,7 +2252,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{{"jsonrpc":"2.0","id":"0","method":"add_address_book","params":{"address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","description":"Primary account"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{{"method":"add_address_book","params":{"address":"bL2op2acR5JWLGsoCy4s3u8aH4EsWGLTfPW9DD1sKkP5hsqJS3CMq7W3CehMA44gkr5PrkkEt5uNwU8QxxXbSh7k1JPQALpfH","description":"Primary account"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2280,7 +2278,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"delete_address_book","params":{"index":0}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"delete_address_book","params":{"index":0}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2310,7 +2308,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"refresh","params":{"start_height":100000}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"refresh","params":{"start_height":100000}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2333,7 +2331,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rescan_spent"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"rescan_spent"}' 
 
 {
   "id": "0",
@@ -2359,7 +2357,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"start_mining","params":{"threads_count":4}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"start_mining","params":{"threads_count":4}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2380,7 +2378,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"stop_mining"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"stop_mining"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2405,7 +2403,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_languages"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"get_languages"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2446,7 +2444,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_wallet","params":{"filename":"mytestwallet","password":"mytestpassword","language":"English"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"create_wallet","params":{"filename":"mytestwallet","password":"mytestpassword","language":"English"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2472,7 +2470,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"open_wallet","params":{"filename":"mytestwallet","password":"mytestpassword"}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"open_wallet","params":{"filename":"mytestwallet","password":"mytestpassword"}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2493,7 +2491,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"close_wallet"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"close_wallet"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2521,7 +2519,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example for a non-multisig wallet:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"is_multisig"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"is_multisig"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2535,7 +2533,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 </code></pre>
 <p>Example for a multisig wallet:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"is_multisig"}' -H 'Content-Type: application/json'                  {
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"is_multisig"}'                   {
   "id": "0",
   "jsonrpc": "2.0",
   "result": {
@@ -2563,7 +2561,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"prepare_multisig"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"prepare_multisig"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2596,7 +2594,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example for 2/2 Multisig Wallet:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_multisig","params":{"multisig_info":["MultisigV1MfveJPeJFpzBdiSZEXqtke3uxFW48ZKni9Uprpb969mnXai6ASXkt5Ji1LtqjYNT4Z7PHMxvZtvVE4eTfEaQuxcbZ3BHTqxNvznPAAGvzpwQQbAJS9JRTV3B3SSP3AEcYZPYPFSwKrdST7CHfDtV3j7dwvfcKcEKrNkwH9xEGCbRZhsD"],"threshold":2}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"make_multisig","params":{"multisig_info":["MultisigV1MfveJPeJFpzBdiSZEXqtke3uxFW48ZKni9Uprpb969mnXai6ASXkt5Ji1LtqjYNT4Z7PHMxvZtvVE4eTfEaQuxcbZ3BHTqxNvznPAAGvzpwQQbAJS9JRTV3B3SSP3AEcYZPYPFSwKrdST7CHfDtV3j7dwvfcKcEKrNkwH9xEGCbRZhsD"],"threshold":2}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2609,7 +2607,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example for 2/3 Multisig Wallet:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_multisig","params":{"multisig_info":["MultisigV1MTVm4DZAdJw1PyVutpSy8Q4WisZBCFRAaZY7hhQnMwr5AZ4swzThyaSiVVQM5FHj1JQi3zPKhQ4k81BZkPSEaFjwRJtbfqfJcVvCqRnmBVcWVxhnihX5s8fZWBCjKrzT3CS95spG4dzNzJSUcjheAkLzCpVmSzGtgwMhAS3Vuz9Pas24","MultisigV1TEx58ycKCd6ADCfxF8hALpcdSRAkhZTi1bu4Rs6FdRC98EdB1LY7TAkMxasM55khFgcxrSXivaSr5FCMyJGHmojm1eE4HpGWPeZKv6cgCTThRzC4u6bkkSoFQdbzWN92yn1XEjuP2XQrGHk81mG2LMeyB51MWKJAVF99Pg9mX2BpmYFj"],"threshold":2}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"make_multisig","params":{"multisig_info":["MultisigV1MTVm4DZAdJw1PyVutpSy8Q4WisZBCFRAaZY7hhQnMwr5AZ4swzThyaSiVVQM5FHj1JQi3zPKhQ4k81BZkPSEaFjwRJtbfqfJcVvCqRnmBVcWVxhnihX5s8fZWBCjKrzT3CS95spG4dzNzJSUcjheAkLzCpVmSzGtgwMhAS3Vuz9Pas24","MultisigV1TEx58ycKCd6ADCfxF8hALpcdSRAkhZTi1bu4Rs6FdRC98EdB1LY7TAkMxasM55khFgcxrSXivaSr5FCMyJGHmojm1eE4HpGWPeZKv6cgCTThRzC4u6bkkSoFQdbzWN92yn1XEjuP2XQrGHk81mG2LMeyB51MWKJAVF99Pg9mX2BpmYFj"],"threshold":2}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2636,7 +2634,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"export_multisig_info"}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"export_multisig_info"}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2666,7 +2664,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"import_multisig_info","params":{"info":["...multisig_info..."]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"import_multisig_info","params":{"info":["...multisig_info..."]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2697,7 +2695,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"finalize_multisig","params":{"multisig_info":["MultisigxV1JNC6Ja2oBt5Sqea9LN2YEF7WYZCpHqr2EKvPG89Trf3X4E8RWkLaGRf29fJ3stU471MELKxwufNYeigP7LoE4tn2McPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZEKVAQ4HPPyQciSCdNjgwsuFRBzrskMdMUwNMgKst1debYfm37i6PSzDoS2tk4kYTYj83kkAdR7kdshet1axQPd6HQ","MultisigxV1Unma7Ko4zdd8Ps3Af4oZwtj2JdWKzwNfP6s2G9ZvXhMoSscwn5g7PyCfcBc1V4ffRHY3Kxqq6VocSCUTncpVeUskMcPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZE1LTpWxLoC3vPMSrqVVcjnmL9LYfdCZz3fECjNZbCEDq3PHDiUuY5jurQTcNoGhDTio5WM9xaAdim9YByiS5KyqF4"]}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"finalize_multisig","params":{"multisig_info":["MultisigxV1JNC6Ja2oBt5Sqea9LN2YEF7WYZCpHqr2EKvPG89Trf3X4E8RWkLaGRf29fJ3stU471MELKxwufNYeigP7LoE4tn2McPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZEKVAQ4HPPyQciSCdNjgwsuFRBzrskMdMUwNMgKst1debYfm37i6PSzDoS2tk4kYTYj83kkAdR7kdshet1axQPd6HQ","MultisigxV1Unma7Ko4zdd8Ps3Af4oZwtj2JdWKzwNfP6s2G9ZvXhMoSscwn5g7PyCfcBc1V4ffRHY3Kxqq6VocSCUTncpVeUskMcPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZE1LTpWxLoC3vPMSrqVVcjnmL9LYfdCZz3fECjNZbCEDq3PHDiUuY5jurQTcNoGhDTio5WM9xaAdim9YByiS5KyqF4"]}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2728,7 +2726,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sign_multisig","params":{"tx_data_hex":"...multisig_txset..."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"sign_multisig","params":{"tx_data_hex":"...multisig_txset..."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2759,7 +2757,7 @@ This includes destination addresses, tx secret keys, tx notes, etc.</p>
 
 <p>Example:</p>
 
-<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_multisig","params":{"tx_data_hex":"...tx_data_hex..."}}' -H 'Content-Type: application/json'
+<pre><code class="language-json">$ curl -X POST http://localhost:52544/json_rpc -d '{"method":"submit_multisig","params":{"tx_data_hex":"...tx_data_hex..."}}' 
 {
   "id": "0",
   "jsonrpc": "2.0",
